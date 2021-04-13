@@ -9,20 +9,27 @@ using namespace std;
 int main()
 {
 	ifstream inputFile;
-	Enemy faceless("faceless.txt"), dragon("dragon.txt"), gorgon("gorgon.txt"), sphinx("sphinx.txt");
+	Enemy* faceless;
+	Enemy* dragon;
+	Enemy* gorgon;
+	Enemy* sphinx;
+	faceless = new Enemy("faceless.txt");
+	dragon = new Enemy("dragon.txt");
+	gorgon = new Enemy("gorgon.txt");
+	sphinx = new Enemy("sphinx.txt");
 	string question, answer, input;
 	int health = 3;
 	bool looping = true;
 
 	cout << "Welcome to the ancient temple. It is said that all who make it to the center will find true happines. \nNavigating the temple is simple, as long as nothing is blocking your way, that is. \nEnter"
-		"'move forward' to progress to the next room\n\nRemember, only use lowercase characters\nEnter'start game' to start:\t";
+		"'move forward' to progress to the next room\n\nRemember, only use lowercase characters and all answers for riddles are one word\nEnter'start game' to start:\t";
 
 	getline(cin, input);
 
 	if (input == "start game")
 	{
 		cout << "\n\n\nYou enter the temple...\n\nUpon entering the first room you see a faceless person sitting in the corner. Without \na mouth to speak, you hear a voice inside your head ask: ";
-		inputFile.open(faceless.GetFilePath());
+		inputFile.open(faceless->GetFilePath());
 		getline(inputFile, question);
 		cout << question << endl;
 		answer = "darkness";
@@ -57,7 +64,7 @@ int main()
 		}
 
 		cout << "\n\n\nYou enter the next room...\n\nUpon entering the next room you find a massive fire-breathing dragon. \nSurprisingly, it speaks perfect english. It asks: ";
-		inputFile.open(dragon.GetFilePath());
+		inputFile.open(dragon->GetFilePath());
 		getline(inputFile, question);
 		cout << question << endl;
 		answer = "corn";
@@ -92,7 +99,7 @@ int main()
 		}
 
 		cout << "\n\n\nYou enter the next room...\n\nUpon entering the next room you find a gorgon. \nYou try to avoid making eye contact as it hisses at you: ";
-		inputFile.open(gorgon.GetFilePath());
+		inputFile.open(gorgon->GetFilePath());
 		getline(inputFile, question);
 		cout << question << endl;
 		answer = "short";
@@ -127,7 +134,7 @@ int main()
 		}
 
 		cout << "\n\n\nYou enter the next room...\n\nUpon entering the next room you find a massive sphinx. \nSomehow, you already know that it will ask you: ";
-		inputFile.open(sphinx.GetFilePath());
+		inputFile.open(sphinx->GetFilePath());
 		getline(inputFile, question);
 		cout << question << endl;
 		answer = "man";
